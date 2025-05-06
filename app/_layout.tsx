@@ -13,7 +13,7 @@ export default function RootLayoutNav() {
         <Stack.Screen name="index" />
 
         {/* Login flow */}
-        <Stack.Screen name="login" />
+        <Stack.Screen name="entry" />
 
         {/* Tabbed app */}
         <Stack.Screen name="tabs" />

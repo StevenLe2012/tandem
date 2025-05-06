@@ -9,5 +9,5 @@ export default function Index() {
     // add splash screen delay here if needed
   }, []);
 
-  return <Redirect href={isLoggedIn ? '/tabs/explore' : '/login'} />;
+  return <Redirect href={isLoggedIn ? '/tabs/explore' : '/entry'} />;
 }
