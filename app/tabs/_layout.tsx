@@ -1,10 +1,18 @@
 import { Tabs } from 'expo-router';
 import { FontAwesome } from '@expo/vector-icons';
+import Colors from '../../constants/Colors';
 
 export default function TabsLayout() {
   return (
     <Tabs
       screenOptions={({ route }) => ({
+        headerShown: false,
+        tabBarActiveTintColor: '#FFADAD',
+        tabBarInactiveTintColor: '#000',
+        tabBarStyle: {
+          backgroundColor: Colors.light.tab,
+          height: 75,
+        },
         tabBarIcon: ({ color, size }) => {
           let iconName: keyof typeof FontAwesome.glyphMap = 'circle';
 
