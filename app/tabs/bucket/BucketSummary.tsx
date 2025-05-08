@@ -1,7 +1,8 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Pressable } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 // THIS IS THE TOP BUTTONS
-export default function BucketSummary({ total, completed }: { total: number; completed: number }) {
+export default function BucketSummary({ total, completed, onAdd }: { total: number; completed: number; onAdd?: () => void }) {
   return (
     <View style={styles.summary}>
       <View style={styles.pillPink}>
@@ -10,6 +11,11 @@ export default function BucketSummary({ total, completed }: { total: number; com
       <View style={styles.pillGrey}>
         <Text style={styles.pillText}>{completed} complete</Text>
       </View>
+      {onAdd && (
+        <Pressable style={styles.addButton} onPress={onAdd}>
+          <Ionicons name="add" size={20} color="#fff" />
+        </Pressable>
+      )}
     </View>
   );
 }
@@ -19,6 +25,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 10,
     marginBottom: 20,
+    alignItems: 'center',
   },
   pillPink: {
     backgroundColor: '#FFBDBD',
@@ -34,5 +41,14 @@ const styles = StyleSheet.create({
   },
   pillText: {
     fontWeight: '600',
+  },
+  addButton: {
+    marginLeft: 10,
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: '#FFBDBD',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

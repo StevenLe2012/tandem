@@ -1,17 +1,26 @@
 import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { Swipeable } from 'react-native-gesture-handler';
 
 // THIS IS THE VIEW OF A SINGLE ITEM IN THE LIST
-export default function BucketListItem({ item }: { item: any }) {
-  return (
-    <Pressable style={styles.container}>
-      <View style={styles.circle}>
-        {item.completed && <Ionicons name="checkmark" size={16} color="white" />}
-      </View>
-      <Image source={item.image} style={styles.image} />
-      <Text style={styles.title}>{item.title}</Text>
-      <Ionicons name="chevron-forward" size={20} color="#999" />
+export default function BucketListItem({ item, onToggle, onDelete }: { item: any, onToggle: (id: number) => void, onDelete: (item: any) => void }) {
+  const renderRightActions = () => (
+    <Pressable style={styles.deleteButton} onPress={() => onDelete(item)}>
+      <Ionicons name="trash" size={24} color="#fff" />
     </Pressable>
+  );
+
+  return (
+    <Swipeable renderRightActions={renderRightActions}>
+      <View style={styles.container}>
+        <Pressable style={styles.circle} onPress={() => onToggle(item.id)}>
+          {item.completed && <Ionicons name="checkmark" size={16} color="white" />}
+        </Pressable>
+        <Image source={item.image} style={styles.image} />
+        <Text style={styles.title}>{item.title}</Text>
+        <Ionicons name="chevron-forward" size={20} color="#999" />
+      </View>
+    </Swipeable>
   );
 }
 
@@ -45,5 +54,14 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 16,
     fontWeight: '500',
+  },
+  deleteButton: {
+    backgroundColor: '#FF4D4F',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 56,
+    height: '100%',
+    borderTopRightRadius: 12,
+    borderBottomRightRadius: 12,
   },
 });
