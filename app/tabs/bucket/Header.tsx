@@ -5,7 +5,9 @@ import { Ionicons } from '@expo/vector-icons';
 export default function Header() {
   return (
     <View style={styles.header}>
-      <Text style={styles.title}>Steven's Bucket List</Text>
+      {/* <Text style={styles.title}>Steven's Bucket List</Text> */}
+      <Text style={styles.logo}>🌸 Tandem</Text>
+
       <Pressable>
         <Ionicons name="notifications-outline" size={24} color="black" />
       </Pressable>
@@ -24,5 +26,10 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: '700',
+  },
+  logo: {
+    fontSize: 32,
+    fontWeight: '700',
+    fontFamily: 'Inter',
   },
 });
