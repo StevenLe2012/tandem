@@ -3,6 +3,11 @@ Tandem is a college-based social mobile app for students interested in exploring
 
 Tandem users will be able to personalize their own bucket list items while still sharing overlaps with others. We want Tandem to encourage agency while enabling social influence to promote activity and exploration that resonates with the users, together or apart.
 
+How this app works: 
+Every user who skips the invite code creates their own new group.
+Anyone with that code can join it later.
+
+
 This is a preliminary mock-up of the app, designed on Figma:
 
 ![sign-up page, 1](https://github.com/user-attachments/assets/695e06b9-ba14-4ffe-a059-a179a6019984)
