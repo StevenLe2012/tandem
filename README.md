@@ -8,7 +8,9 @@ Every user who skips the invite code creates their own new group.
 Anyone with that code can join it later.
 
 
-This is a preliminary mock-up of the app, designed on Figma:
+
+Under design till May 21 2025: https://www.figma.com/design/rt0gEEW3a0dtWleSUUn796/Tandem--UI?node-id=0-1&t=G7WktxHOkXiFKwqz-1
+This is a preliminary mock-up of the app, designed on Figma, for visual reference:
 
 ![sign-up page, 1](https://github.com/user-attachments/assets/695e06b9-ba14-4ffe-a059-a179a6019984)
 ![page 0](https://github.com/user-attachments/assets/de706875-d5dd-4d88-98a7-fa5466f1cd2e)
