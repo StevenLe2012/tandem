@@ -1,9 +1,11 @@
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
 import LogoCircles from '../../../components/LogoCircles';
+import { useState } from 'react';
 
 export default function SignupIndex() {
   const router = useRouter();
+  const [email, setEmail] = useState('');
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
@@ -11,8 +13,8 @@ export default function SignupIndex() {
         <Text style={styles.logoText}>Tandem</Text>
       </View>
       <Text style={styles.title}>Contact Information</Text>
-      <TextInput style={styles.input} placeholder="Enter Your Email" placeholderTextColor="#6B6054" />
-      <TouchableOpacity style={styles.button} onPress={() => {/* handle continue */}}>
+      <TextInput style={styles.input} placeholder="Enter Your Email" placeholderTextColor="#6B6054" value={email} onChangeText={setEmail} />
+      <TouchableOpacity style={styles.button} onPress={() => router.push('/entry/signup/invite')}>
         <Text style={styles.buttonText}>Continue</Text>
       </TouchableOpacity>
     </View>
