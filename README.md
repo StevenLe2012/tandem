@@ -14,5 +14,8 @@ This is a preliminary mock-up of the app, designed on Figma:
 ![page 0](https://github.com/user-attachments/assets/de706875-d5dd-4d88-98a7-fa5466f1cd2e)
 ![splash screen](https://github.com/user-attachments/assets/d0a35c5e-c1b9-44b6-a057-1e52f2fc1ef1)
 ![profile](https://github.com/user-attachments/assets/3a06504e-f29d-4d68-9a96-bd53c61b772a)
+![friend group](https://github.com/user-attachments/assets/5953c9af-23d2-4b12-aadf-d57ff62f1bdb)
+
+
 
 
