@@ -3,10 +3,9 @@ Tandem is a college-based social mobile app for students interested in exploring
 
 Tandem users will be able to personalize their own bucket list items while still sharing overlaps with others. We want Tandem to encourage agency while enabling social influence to promote activity and exploration that resonates with the users, together or apart.
 
-How this app works: 
-Every user who skips the invite code creates their own new group.
-Anyone with that code can join it later.
-
+How this app works/ Backend logic: 
+- When a user skips entering an invite code during signup, the app creates a new group in Firestore and generates a unique invite code for that group. This code is stored in the inviteCodes collection, linked to the group’s ID.
+- When a user enters an invite code, the app checks the inviteCodes collection in Firestore: if the code exists, the user is added to the corresponding group’s members array in the groups collection; if the code does not exist or is expired, the app shows an error.
 
 
 Under design till May 21 2025: https://www.figma.com/design/rt0gEEW3a0dtWleSUUn796/Tandem--UI?node-id=0-1&t=G7WktxHOkXiFKwqz-1
