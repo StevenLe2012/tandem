@@ -8,7 +8,7 @@ How this app works/ Backend logic:
 - When a user enters an invite code, the app checks the inviteCodes collection in Firestore: if the code exists, the user is added to the corresponding group’s members array in the groups collection; if the code does not exist or is expired, the app shows an error.
 
 
-Under design till May 26 2025: https://www.figma.com/design/rt0gEEW3a0dtWleSUUn796/Tandem--UI?node-id=0-1&t=G7WktxHOkXiFKwqz-1
+Under design till May 27 2025: https://www.figma.com/design/rt0gEEW3a0dtWleSUUn796/Tandem--UI?node-id=0-1&t=G7WktxHOkXiFKwqz-1
 This is a mock-up of the app, designed on Figma, for visual reference:
 
 
