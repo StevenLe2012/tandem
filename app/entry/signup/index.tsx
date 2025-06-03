@@ -1,9 +1,13 @@
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import LogoCircles from '../../../components/LogoCircles';
 import { useRouter } from 'expo-router';
+import { useState } from 'react';
 
 export default function SignUpScreen() {
   const router = useRouter();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   return (
     <View style={styles.container}>
@@ -15,20 +19,29 @@ export default function SignUpScreen() {
           placeholder="Name"
           placeholderTextColor="#222"
           style={styles.input}
+          value={name}
+          onChangeText={setName}
         />
         <TextInput
           placeholder="Email Address"
           placeholderTextColor="#222"
           style={styles.input}
+          value={email}
+          onChangeText={setEmail}
         />
         <TextInput
           placeholder="Password"
           placeholderTextColor="#222"
           secureTextEntry
           style={styles.input}
+          value={password}
+          onChangeText={setPassword}
         />
       </View>
-      <TouchableOpacity style={styles.signUpButton}>
+      <TouchableOpacity
+        style={styles.signUpButton}
+        onPress={() => router.push({ pathname: '/entry/signup/verify', params: { email } })}
+      >
         <Text style={styles.signUpText}>Sign Up</Text>
       </TouchableOpacity>
     </View>
