@@ -19,6 +19,9 @@ export default function VerifyEmailScreen() {
       <TouchableOpacity style={styles.button} onPress={() => router.back()}>
         <Text style={styles.buttonText}>Change Email</Text>
       </TouchableOpacity>
+      <TouchableOpacity style={styles.continueButton} onPress={() => router.push('./join-friendgroup')}>
+        <Text style={styles.buttonText}>Continue</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -67,5 +70,14 @@ const styles = StyleSheet.create({
     color: '#222',
     fontSize: 18,
     fontWeight: '700',
+  },
+  continueButton: {
+    backgroundColor: '#FFB6B6',
+    borderRadius: 20,
+    paddingVertical: 14,
+    paddingHorizontal: 40,
+    alignItems: 'center',
+    marginBottom: 16,
+    width: 260,
   },
 }); 
