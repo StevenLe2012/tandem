@@ -1,21 +1,35 @@
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import { useRouter } from 'expo-router';
 import LogoCircles from '../../../components/LogoCircles';
-import { useState } from 'react';
+import { useRouter } from 'expo-router';
 
-export default function SignupIndex() {
+export default function SignUpScreen() {
   const router = useRouter();
-  const [email, setEmail] = useState('');
+
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
         <LogoCircles />
-        <Text style={styles.logoText}>Tandem</Text>
       </View>
-      <Text style={styles.title}>Contact Information</Text>
-      <TextInput style={styles.input} placeholder="Enter Your Email" placeholderTextColor="#6B6054" value={email} onChangeText={setEmail} />
-      <TouchableOpacity style={styles.button} onPress={() => router.push('/entry/signup/invite')}>
-        <Text style={styles.buttonText}>Continue</Text>
+      <View style={styles.inputContainer}>
+        <TextInput
+          placeholder="Name"
+          placeholderTextColor="#222"
+          style={styles.input}
+        />
+        <TextInput
+          placeholder="Email Address"
+          placeholderTextColor="#222"
+          style={styles.input}
+        />
+        <TextInput
+          placeholder="Password"
+          placeholderTextColor="#222"
+          secureTextEntry
+          style={styles.input}
+        />
+      </View>
+      <TouchableOpacity style={styles.signUpButton}>
+        <Text style={styles.signUpText}>Sign Up</Text>
       </TouchableOpacity>
     </View>
   );
@@ -25,43 +39,36 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FDF3EC',
-    alignItems: 'center',
-    paddingTop: 80,
+    paddingHorizontal: 20,
+    justifyContent: 'center',
   },
   logoContainer: {
     alignItems: 'center',
-    marginBottom: 32,
+    marginBottom: 40,
   },
-  logoText: {
-    fontSize: 24,
-    fontWeight: '700',
-    marginTop: 8,
-    marginBottom: 24,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: '700',
-    marginBottom: 32,
+  inputContainer: {
+    gap: 24,
+    marginBottom: 40,
   },
   input: {
-    width: 300,
-    backgroundColor: '#E7DFD8',
-    borderRadius: 16,
-    padding: 16,
-    fontSize: 16,
-    marginBottom: 24,
-    color: '#6B6054',
+    backgroundColor: '#E5DED8',
+    borderRadius: 20,
+    paddingVertical: 16,
+    paddingHorizontal: 24,
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#222',
   },
-  button: {
+  signUpButton: {
     backgroundColor: '#FFB6B6',
     borderRadius: 20,
-    paddingVertical: 12,
-    paddingHorizontal: 40,
+    paddingVertical: 14,
     alignItems: 'center',
+    marginTop: 10,
   },
-  buttonText: {
-    color: '#3C2A21',
+  signUpText: {
+    color: '#222',
     fontSize: 18,
-    fontWeight: '600',
+    fontWeight: '700',
   },
 });
