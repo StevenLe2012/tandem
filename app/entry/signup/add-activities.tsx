@@ -1,5 +1,6 @@
 import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
 import { useState } from 'react';
+import { useRouter } from 'expo-router';
 
 const defaultActivities = [
   'Pull an all-nighter together',
@@ -14,6 +15,7 @@ export default function AddActivitiesScreen() {
   const [customActivities, setCustomActivities] = useState<string[]>([]);
   const [adding, setAdding] = useState(false);
   const [newActivity, setNewActivity] = useState('');
+  const router = useRouter();
 
   const toggleSelect = (activity: string) => {
     setSelected((prev) =>
@@ -71,7 +73,7 @@ export default function AddActivitiesScreen() {
           </TouchableOpacity>
         )}
       </View>
-      <TouchableOpacity style={styles.continueButton}>
+      <TouchableOpacity style={styles.continueButton} onPress={() => router.replace('/tabs/explore')}>
         <Text style={styles.continueButtonText}>Add Selected & Continue</Text>
       </TouchableOpacity>
     </View>

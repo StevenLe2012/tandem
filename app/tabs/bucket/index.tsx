@@ -2,6 +2,7 @@ import { View, StyleSheet, SafeAreaView, Text, Modal, TextInput, Button } from '
 import DropDownPicker from 'react-native-dropdown-picker';
 import { useState } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { useRouter } from 'expo-router';
 
 import Header from './Header';
 import BucketSummary from './BucketSummary';
@@ -19,6 +20,7 @@ export default function BucketScreen() {
   const [addTarget, setAddTarget] = useState<'shared' | 'individual' | null>(null);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const [deleteTarget, setDeleteTarget] = useState<{ item: any, type: 'shared' | 'individual' } | null>(null);
+  const router = useRouter();
 
   const items = Object.keys(individualItems).map(name => ({
     label: name,
@@ -26,18 +28,37 @@ export default function BucketScreen() {
   }));
 
   const toggleSharedItem = (id: number) => {
-    setSharedItems(prev => prev.map(item =>
-      item.id === id ? { ...item, completed: !item.completed } : item
-    ));
+    setSharedItems(prev => prev.map(item => {
+      if (item.id === id) {
+        const updated = { ...item, completed: !item.completed };
+        if (!item.completed) {
+          // Only trigger when marking as completed
+          router.push({ pathname: '/tabs/bucket/MemoryUpload', params: { activity: item.title } });
+        }
+        return updated;
+      }
+      return item;
+    }));
   };
 
   const toggleIndividualItem = (id: number) => {
-    setIndividualItems(prev => ({
-      ...prev,
-      [selectedUser]: prev[selectedUser].map(item =>
-        item.id === id ? { ...item, completed: !item.completed } : item
-      )
-    }));
+    setIndividualItems(prev => {
+      const updatedItems = prev[selectedUser].map(item => {
+        if (item.id === id) {
+          const updated = { ...item, completed: !item.completed };
+          if (!item.completed) {
+            // Only trigger when marking as completed
+            router.push({ pathname: '/tabs/bucket/MemoryUpload', params: { activity: item.title } });
+          }
+          return updated;
+        }
+        return item;
+      });
+      return {
+        ...prev,
+        [selectedUser]: updatedItems,
+      };
+    });
   };
 
   const handleAdd = (target: 'shared' | 'individual') => {
