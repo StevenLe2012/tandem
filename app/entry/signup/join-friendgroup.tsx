@@ -1,7 +1,11 @@
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import LogoCircles from '../../../components/LogoCircles';
+import { useRouter } from 'expo-router';
+import { useState } from 'react';
 
 export default function JoinFriendGroupScreen() {
+  const router = useRouter();
+  const [inviteCode, setInviteCode] = useState('');
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
@@ -15,8 +19,13 @@ export default function JoinFriendGroupScreen() {
         placeholder="Enter invite code"
         placeholderTextColor="#222"
         style={styles.input}
+        value={inviteCode}
+        onChangeText={setInviteCode}
       />
-      <TouchableOpacity style={styles.joinButton}>
+      <TouchableOpacity
+        style={styles.joinButton}
+        onPress={() => router.push({ pathname: './group-created', params: { code: 'XVI0KA89' } })}
+      >
         <Text style={styles.joinButtonText}>Join Group</Text>
       </TouchableOpacity>
       <Text style={styles.noCodeText}>I don't have a code.</Text>

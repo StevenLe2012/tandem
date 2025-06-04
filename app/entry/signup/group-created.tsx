@@ -1,15 +1,16 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 
 export default function GroupCreatedScreen() {
   const { code } = useLocalSearchParams();
+  const router = useRouter();
   return (
     <View style={styles.container}>
       <Text style={styles.emoji}>🦄</Text>
       <Text style={styles.title}>You're in a group!</Text>
       <Text style={styles.subtitle}>Invite your friends to join using this code:</Text>
       <Text style={styles.code}>{code}</Text>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={() => router.push('./add-activities')}>
         <Text style={styles.buttonText}>Start Adding Activities</Text>
       </TouchableOpacity>
     </View>
