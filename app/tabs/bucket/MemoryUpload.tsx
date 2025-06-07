@@ -4,11 +4,13 @@ import { FontAwesome } from '@expo/vector-icons';
 import Colors from '../../../constants/Colors';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import * as ImagePicker from 'expo-image-picker';
+import { useMemories } from '../../context/MemoryContext';
 
 export default function MemoryUpload() {
   const { activity } = useLocalSearchParams();
   const router = useRouter();
   const [photo, setPhoto] = useState<string | null>(null);
+  const { addMemory } = useMemories();
 
   const handlePickPhoto = async () => {
     Alert.alert(
@@ -62,6 +64,30 @@ export default function MemoryUpload() {
     setPhoto(null);
   };
 
+  const handlePostMemory = () => {
+    if (!photo) {
+      Alert.alert('Error', 'Please select a photo first');
+      return;
+    }
+
+    addMemory({
+      image: photo,
+      activity: activity as string || 'a bucket list item',
+      user: 'You', // In a real app, this would come from user authentication
+    });
+
+    Alert.alert(
+      'Success',
+      'Memory posted successfully!',
+      [
+        {
+          text: 'OK',
+          onPress: () => router.push('/tabs/explore'),
+        },
+      ]
+    );
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Keep a memory</Text>
@@ -84,7 +110,7 @@ export default function MemoryUpload() {
       <Text style={styles.completedText}>
         You just completed: <Text style={{ fontWeight: 'bold' }}>{activity || 'a bucket list item'}</Text>.
       </Text>
-      <TouchableOpacity style={styles.postButton}>
+      <TouchableOpacity style={styles.postButton} onPress={handlePostMemory}>
         <Text style={styles.postButtonText}>Post Memory</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => router.back()}>

@@ -1,25 +1,11 @@
 import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import Colors from '../../../constants/Colors';
-
-const friendActivities = [
-  {
-    id: 1,
-    user: 'Raghad',
-    date: '05/29/2025',
-    caption: 'Hiked the dish!',
-    image: { uri: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80' },
-  },
-  {
-    id: 2,
-    user: 'Mohammed',
-    date: null,
-    caption: 'Hiked the dish!',
-    image: { uri: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80' },
-  },
-];
+import { useMemories } from '../../context/MemoryContext';
 
 export default function ExploreScreen() {
+  const { memories } = useMemories();
+
   return (
     <View style={styles.container}>
       <View style={styles.headerRow}>
@@ -27,16 +13,18 @@ export default function ExploreScreen() {
       </View>
       <Text style={styles.subheader}>See what your friends have kept!</Text>
       <ScrollView showsVerticalScrollIndicator={false}>
-        {friendActivities.map((activity) => (
-          <View key={activity.id} style={styles.card}>
-            <Image source={activity.image} style={styles.image} />
+        {memories.map((memory) => (
+          <View key={memory.id} style={styles.card}>
+            <Image source={{ uri: memory.image }} style={styles.image} />
             <View style={styles.captionRow}>
               <FontAwesome name="user-circle-o" size={22} color="#6B6054" style={{ marginRight: 8 }} />
               <View>
-                <Text style={styles.caption}><Text style={{ fontWeight: 'bold' }}>Hiked the dish!</Text></Text>
+                <Text style={styles.caption}>
+                  <Text style={{ fontWeight: 'bold' }}>{memory.activity}</Text>
+                </Text>
                 <Text style={styles.meta}>
-                  From {activity.user}
-                  {activity.date ? `, ${activity.date}` : ''}
+                  From {memory.user}
+                  {memory.date ? `, ${memory.date}` : ''}
                 </Text>
               </View>
             </View>
