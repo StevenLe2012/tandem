@@ -1,18 +1,62 @@
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, Linking, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, Linking, Image, Alert } from 'react-native';
 import Colors from '../../constants/Colors';
 import { FontAwesome } from '@expo/vector-icons';
 import { useState } from 'react';
+import * as ImagePicker from 'expo-image-picker';
 
 export default function ProfileScreen() {
   const [name, setName] = useState('Raghad');
   const [email, setEmail] = useState('raghad@email.com');
   const [instagram, setInstagram] = useState('raghad_insta');
-  const [photo, setPhoto] = useState(null); // Placeholder for image URI
-  const friendGroupCode = 'ABC123'; // Placeholder
+  const [photo, setPhoto] = useState<string | null>(null);
+  const friendGroupCode = 'ABC123';
 
   const handlePickPhoto = () => {
-    // TODO: Implement image picker
-    alert('Image picker not implemented');
+    Alert.alert(
+      'Choose Photo Source',
+      'Where would you like to get your photo from?',
+      [
+        {
+          text: 'Camera',
+          onPress: () => pickImage('camera'),
+        },
+        {
+          text: 'Photo Library',
+          onPress: () => pickImage('library'),
+        },
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+      ]
+    );
+  };
+
+  const pickImage = async (source: 'camera' | 'library') => {
+    try {
+      const permission = source === 'camera'
+        ? await ImagePicker.requestCameraPermissionsAsync()
+        : await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+      if (!permission.granted) {
+        Alert.alert('Permission Required', 'Please grant permission to access your photos/camera');
+        return;
+      }
+
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [1, 1],
+        quality: 0.8,
+      });
+
+      if (!result.canceled) {
+        setPhoto(result.assets[0].uri);
+      }
+    } catch (error) {
+      console.error('Error picking image:', error);
+      Alert.alert('Error', 'Failed to pick image');
+    }
   };
 
   const handleInstagramPress = () => {
