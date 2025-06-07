@@ -73,7 +73,7 @@ export default function AddActivitiesScreen() {
           </TouchableOpacity>
         )}
       </View>
-      <TouchableOpacity style={styles.continueButton} onPress={() => router.replace('/tabs/explore')}>
+      <TouchableOpacity style={styles.continueButton} onPress={() => router.replace('/tabs/profile')}>
         <Text style={styles.continueButtonText}>Add Selected & Continue</Text>
       </TouchableOpacity>
     </View>

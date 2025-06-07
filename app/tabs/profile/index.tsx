@@ -1,15 +1,17 @@
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, Linking, Image, Alert } from 'react-native';
-import Colors from '../../constants/Colors';
+import Colors from '../../../constants/Colors';
 import { FontAwesome } from '@expo/vector-icons';
 import { useState } from 'react';
 import * as ImagePicker from 'expo-image-picker';
+import { useRouter } from 'expo-router';
 
 export default function ProfileScreen() {
-  const [name, setName] = useState('Raghad');
-  const [email, setEmail] = useState('raghad@email.com');
-  const [instagram, setInstagram] = useState('raghad_insta');
+  const [name, setName] = useState('Steven');
+  const [email, setEmail] = useState('stevenle@stanford.com');
+  const [instagram, setInstagram] = useState('stevenle1337');
   const [photo, setPhoto] = useState<string | null>(null);
   const friendGroupCode = 'ABC123';
+  const router = useRouter();
 
   const handlePickPhoto = () => {
     Alert.alert(
@@ -117,6 +119,9 @@ export default function ProfileScreen() {
         <Text style={styles.label}>Your Friend Group Code</Text>
         <Text style={styles.code}>{friendGroupCode}</Text>
       </View>
+      <TouchableOpacity style={styles.termsButton} onPress={() => router.push('/tabs/profile/terms')}>
+        <Text style={styles.termsButtonText}>View Terms and Conditions</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -181,5 +186,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 4,
     borderRadius: 8,
+  },
+  termsButton: {
+    backgroundColor: '#FFEFE8',
+    borderRadius: 16,
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    alignSelf: 'center',
+    marginTop: 24,
+  },
+  termsButtonText: {
+    color: '#6B6054',
+    fontSize: 15,
+    fontWeight: '600',
+    textAlign: 'center',
   },
 }); 
